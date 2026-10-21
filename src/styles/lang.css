@@ -179,3 +179,21 @@ html:not([lang='en']) .cat-group span { min-width: 0; overflow-wrap: anywhere; }
   -webkit-backdrop-filter: blur(6px);
   border-color: rgba(255, 255, 255, 0.5);
 }
+
+/* Services hero: the four plan tiles are always the same size */
+.shero-plans { grid-auto-rows: 1fr; align-items: stretch; }
+.shero-plans > li { display: flex; min-width: 0; }
+.shero-plans .shero-plan { width: 100%; min-height: 78px; }
+.shero-plan-t strong { font-size: 0.92rem; line-height: 1.25; }
+
+/* About: slimmer "Meet the founder" band */
+.section.founder3 { padding-block: clamp(16px, 2vw, 28px); }
+.section.honest + .section.founder3 { padding-top: 0; }
+.section.honest:has(+ .founder3) { padding-bottom: clamp(8px, 1.2vw, 16px); }
+.section.founder3 + .section.quotes3 { padding-top: clamp(28px, 3.5vw, 48px); }
+.founder3-card { padding: clamp(18px, 2vw, 26px); gap: clamp(20px, 3vw, 40px); grid-template-columns: minmax(150px, 210px) 1fr; }
+.founder3-photo span { font-size: 3.4rem; }
+.section.honest { padding-bottom: 0; }
+.section.honest .separator { margin-block: 12px; padding-block: 0; }
+.section.honest:has(+ .founder3) { padding-bottom: 0; }
+.section.honest + .section.founder3 { padding-top: 0; padding-bottom: clamp(8px, 1.5vw, 20px); }

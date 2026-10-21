@@ -8,3 +8,7 @@ resources/
 !.env.example
 .vercel
 .netlify
+
+# Vite / editor caches
+.vite
+.vscode

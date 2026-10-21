@@ -74,19 +74,17 @@ for (const [file, name, width, crf] of videos) {
   console.log('✓ work-nature.mp4  ' + (statSync(nature).size / 1e6).toFixed(1) + ' MB (original quality)');
 }
 
-// Process hero is resized and compressed for web delivery; the Test-yourself hero
-// keeps its original video stream. Audio is dropped and faststart is added to both.
+// Process + Test-yourself heroes: 1920x1080 / 30 fps. The sources are 30-45 MB, over Cloudflare Pages'
+// 25 MB per-file limit, so both are re-encoded at FULL 1080p with high-quality H.264 (crf 22, 5 Mbps cap):
+// visually identical, ~19 MB each. Audio is dropped, faststart added.
 for (const [file, name] of [
   ['Animated Travel Vlog Youtube Video Intro (1).mp4', 'process-road'],
   ['Light Blue Music Ocean Waves Inspirational Video.mp4', 'test-ocean'],
 ]) {
   const dest = out(`${name}.mp4`);
-  const videoOptions = name === 'process-road'
-    ? ['-vf', 'scale=1280:-2:flags=lanczos,fps=30', '-c:v', 'libx264', '-preset', 'slow', '-crf', '24', '-pix_fmt', 'yuv420p']
-    : ['-c:v', 'copy'];
-  execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-i', src(file), '-an', ...videoOptions, '-movflags', '+faststart', dest]);
+  execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-i', src(file), '-an', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-maxrate', '5M', '-bufsize', '10M', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', dest]);
   execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-ss', '1', '-i', dest, '-frames:v', '1', '-q:v', '2', out(`${name}-poster.jpg`)]);
-  console.log(`✓ ${name}.mp4  ${(statSync(dest).size / 1e6).toFixed(1)} MB (original quality)`);
+  console.log(`✓ ${name}.mp4  ${(statSync(dest).size / 1e6).toFixed(1)} MB (1080p, Cloudflare-safe)`);
 }
 
 // Process journey cards: photos resized to display size (cards are ~300px wide, so
@@ -202,7 +200,26 @@ for (const [file, name, w] of images) {
 // Services "Full catalog" background: original 1920x1080 / 30 fps stream copied as-is (no re-encode).
 {
   const dest = out('catalog-bg.mp4');
-  execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-i', src('17038519_1920_1080_30fps.mp4'), '-an', '-c:v', 'copy', '-movflags', '+faststart', dest]);
+  execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-i', src('Blue Black Modern Minimalist Cinematic Space Documentary Intro Video.mp4'), '-an', '-c:v', 'copy', '-movflags', '+faststart', dest]);
   execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-ss', '1', '-i', dest, '-frames:v', '1', '-q:v', '3', out('catalog-bg-poster.jpg')]);
   console.log('✓ catalog-bg.mp4  ' + (statSync(dest).size / 1e6).toFixed(1) + ' MB (original quality)');
+}
+
+// Services hero collage: three photos (WhatsApp, reports dashboard, sunset field).
+for (const [file, name, w] of [
+  ['pexels-pixabay-267392.jpg', 'svc-hero-whatsapp', 1500],
+  ['pexels-asphotography-95916.jpg', 'svc-hero-reports', 1500],
+  ['pexels-alexandr-shuvalov-1081264256-40090557.jpg', 'svc-hero-sunset', 1200],
+]) {
+  await sharp(src(file)).resize({ width: w }).webp({ quality: 82 }).toFile(out(name + '.webp'));
+  console.log('✓ ' + name + '.webp');
+}
+
+// Founder portrait for the About page: square crop around the consultant (left) from the consultation photo.
+{
+  const f = src('WhatsApp Image 2026-10-14 at 6.24.35 PM (2).jpeg');
+  const m = await sharp(f).metadata();
+  const size = Math.min(m.width, m.height, Math.round(m.height * 0.64));
+  await sharp(f).extract({ left: Math.round(m.width * 0.07), top: Math.round(m.height * 0.02), width: size, height: size }).resize(900, 900).webp({ quality: 86 }).toFile(out('founder.webp'));
+  console.log('✓ founder.webp');
 }

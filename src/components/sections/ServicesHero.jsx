@@ -4,15 +4,15 @@ import { planMedia } from '../../data/planMedia';
 import Eyebrow from '../ui/Eyebrow';
 import RevealText from '../ui/RevealText';
 import FadeUp from '../ui/FadeUp';
-import Video from '../ui/Video';
 import Icon from '../ui/Icon';
 
 // Services hero: copy on the left, an offset collage of real photos + video on
 // the right with floating chips. Plan pills below the copy link straight in.
 export default function ServicesHero() {
-  const a = planMedia['digital-foundation'];
-  const b = planMedia['smart-operations'];
-  const c = planMedia['automation-ai'];
+  // Collage photos: WhatsApp (new lead alert) · reports dashboard (9 AM summary) · sunset field (tomorrow)
+  const a = { src: '/media/svc-hero-whatsapp.webp', w: 1500, h: 1000, pos: '42% 50%', alt: 'A smartphone screen with the WhatsApp icon among other apps' };
+  const b = { src: '/media/svc-hero-reports.webp', w: 1500, h: 1000, pos: '36% 40%', alt: 'Printed analytics reports with charts beside a keyboard, pen and phone' };
+  const c = { src: '/media/svc-hero-sunset.webp', w: 1200, h: 1600, pos: '50% 42%', alt: 'Tall grass and seed heads glowing in warm evening light' };
 
   return (
     <section className="shero" data-glow>
@@ -55,13 +55,13 @@ export default function ServicesHero() {
 
         <div className="shero-collage" aria-hidden="false">
           <figure className="sc sc-a">
-            <img src={a.src} alt={a.alt} width={a.w} height={a.h} />
+            <img src={a.src} alt={a.alt} width={a.w} height={a.h} style={{ objectPosition: a.pos }} />
           </figure>
           <figure className="sc sc-b">
             <img src={b.src} alt={b.alt} width={b.w} height={b.h} style={{ objectPosition: b.pos }} />
           </figure>
           <figure className="sc sc-c">
-            <Video src={c.src} poster={c.poster} fill label={c.alt} />
+            <img src={c.src} alt={c.alt} width={c.w} height={c.h} style={{ objectPosition: c.pos }} />
           </figure>
 
           <span className="pin pin-1">

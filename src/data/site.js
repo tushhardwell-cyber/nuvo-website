@@ -31,15 +31,15 @@ export const site = {
 
   // ⚠ Placeholder handles — replace with your real profiles (empty string hides a link).
   socials: {
-    linkedin: 'https://www.linkedin.com/company/nuvo-business-solutions',
+    linkedin: 'https://www.linkedin.com/company/nuvo-the-business-transformation-agency/',
     instagram: 'https://www.instagram.com/nuvo.business',
   },
 
-  // ⚠ Placeholder founder — set the real name, bio and a photo path (e.g. '/media/founder.webp').
+  // Founder — name, photo and bio shown on the About page.
   founder: {
-    name: 'Founder Name',
+    name: 'Tushar Awachar',
     role: 'Founder, Nuvō Business Solutions',
-    photo: '',
+    photo: '/media/founder.webp',
     bio: 'I started Nuvō after watching good businesses lose leads, time and money to scattered tools and manual follow-ups. I meet every client myself, map how the business really runs, and personally review everything we deliver.',
   },
 };
