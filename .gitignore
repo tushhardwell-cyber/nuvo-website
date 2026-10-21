@@ -16,3 +16,4 @@ resources/
 # Cloudflare local secrets
 .dev.vars
 .wrangler
+*.code-workspace
