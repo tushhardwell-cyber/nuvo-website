@@ -9,7 +9,7 @@ import { faqs } from '../src/data/faq.js';
 import { site } from '../src/data/site.js';
 import { useCases } from '../src/data/useCases.js';
 
-const DEFAULT_MODEL = 'llama-3.3-70b-versatile';
+const DEFAULT_MODEL = 'openai/gpt-oss-120b'; // strong multilingual model available on Groq
 const ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
 const LANGS = { es: 'Spanish', fr: 'French', ru: 'Russian', zh: 'Simplified Chinese (Mandarin)', de: 'German' };
 const MAX_MESSAGES = 20;
@@ -93,15 +93,17 @@ LANGUAGE: The visitor is using the site in ${LANGS[body.lang]}. Write every repl
     : SYSTEM_PROMPT;
   const messages = [{ role: 'system', content: system }, ...body.messages.map((m) => ({ role: m.role, content: m.content.trim() }))];
 
+  const model = process.env.GROQ_MODEL || DEFAULT_MODEL;
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
       body: JSON.stringify({
-        model: process.env.GROQ_MODEL || DEFAULT_MODEL,
+        model,
         messages,
         temperature: 0.4,
-        max_tokens: 450, // short conversational answers
+        max_tokens: 1200, // replies are short; the headroom is for the model's brief reasoning
+        ...(model.startsWith('openai/gpt-oss') ? { reasoning_effort: 'low' } : {}),
       }),
     });
 
