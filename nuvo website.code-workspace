@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "nuvo website",
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
