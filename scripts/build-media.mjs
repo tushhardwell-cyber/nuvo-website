@@ -81,7 +81,7 @@ for (const [file, name] of [
   ['Animated Travel Vlog Youtube Video Intro (1).mp4', 'process-road'],
   ['Light Blue Music Ocean Waves Inspirational Video.mp4', 'test-ocean'],
 ]) {
-  const dest = out(`${name}.mp4`);
+  const dest = out(`${name === 'process-road' ? 'process-road-hd' : name}.mp4`); // new name so CDN caches never serve an old/missing copy
   execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-i', src(file), '-an', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-maxrate', '5M', '-bufsize', '10M', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', dest]);
   execFileSync(ffmpeg, ['-y', '-loglevel', 'error', '-ss', '1', '-i', dest, '-frames:v', '1', '-q:v', '2', out(`${name}-poster.jpg`)]);
   console.log(`✓ ${name}.mp4  ${(statSync(dest).size / 1e6).toFixed(1)} MB (1080p, Cloudflare-safe)`);

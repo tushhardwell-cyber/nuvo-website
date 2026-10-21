@@ -36,7 +36,7 @@ export default function ProcessHero() {
         <motion.div className="phero3-clip" style={reduce ? undefined : { clipPath }}>
           <motion.div className="phero3-drift" style={reduce ? undefined : { y: drift }}>
             <Video
-              src="/media/process-road.mp4"
+              src="/media/process-road-hd.mp4"
               poster="/media/process-road-poster.jpg"
               fill
               label="A drone follows a red car along a winding forest road — the journey from first meeting to go-live"
