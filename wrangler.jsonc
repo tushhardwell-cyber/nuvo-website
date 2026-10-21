@@ -3,6 +3,7 @@
   "name": "nuvo-website",
   "compatibility_date": "2026-10-21",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "not_found_handling": "404-page"
   }
 }
