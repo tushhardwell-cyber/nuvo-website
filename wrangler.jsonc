@@ -1,9 +1,14 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "nuvo-website",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-21",
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash",
+    "run_worker_first": ["/api/*"]
   }
 }

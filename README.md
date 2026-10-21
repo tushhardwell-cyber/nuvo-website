@@ -114,3 +114,19 @@ Accessibility & performance: respects `prefers-reduced-motion`, keyboard-navigab
   "ask the team" message.
 - Hetvik photos: save the two real photos as `resources/hetvik-front.jpg` and `resources/hetvik-floor.jpg`,
   then run `npm run media`.
+
+## Deploying on Cloudflare (Workers + static assets)
+
+`wrangler.jsonc` serves the built site (`dist/`) and runs `worker/index.js` for `/api/*` only:
+
+| Endpoint | What it does | Secret to add (Cloudflare → Workers → nuvo-website → Settings → Variables and Secrets) |
+|---|---|---|
+| `POST /api/chat` | Ask Nuvō live AI answers (replies in the visitor's language) | `ANTHROPIC_API_KEY` |
+| `POST /api/lead` | Contact form → your inbox | `WEB3FORMS_KEY` (free, web3forms.com) **or** `LEAD_WEBHOOK_URL` |
+
+- Build command `npm run build` · deploy command `npx wrangler deploy` (Cloudflare's default for this repo).
+- Google Analytics: add `VITE_GA_ID` as a **build** variable (Settings → Build → Variables).
+- Every file in `dist/` must stay under 25 MB (Cloudflare's per-file limit). The two big hero videos are
+  re-encoded by `npm run media` to ~19 MB each at full 1080p.
+- Local test: `npm run build && npx wrangler dev` (put secrets in a git-ignored `.dev.vars` file).
+- Without the secrets the site still works: the form opens WhatsApp, the chat answers from the built-in FAQ.

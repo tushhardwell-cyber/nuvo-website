@@ -12,3 +12,7 @@ resources/
 # Vite / editor caches
 .vite
 .vscode
+
+# Cloudflare local secrets
+.dev.vars
+.wrangler
