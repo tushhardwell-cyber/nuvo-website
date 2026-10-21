@@ -1,7 +1,7 @@
 // Cloudflare Worker entry — runs ONLY for /api/* (see run_worker_first in wrangler.jsonc);
 // every other URL is served straight from the static files in /dist.
 //
-// POST /api/chat  → Ask Nuvō assistant (needs the ANTHROPIC_API_KEY secret)
+// POST /api/chat  → Ask Nuvō assistant (needs the GROQ_API_KEY secret)
 // POST /api/lead  → contact form → your inbox (needs WEB3FORMS_KEY or LEAD_WEBHOOK_URL)
 import { handleChat } from '../server/nuvoBot.mjs';
 import { handleLead } from '../server/lead.mjs';

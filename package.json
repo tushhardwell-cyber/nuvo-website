@@ -14,7 +14,6 @@
     "i18n": "node scripts/build-i18n.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.133.0",
     "@fontsource-variable/manrope": "^5.1.0",
     "@fontsource/cinzel": "^5.1.0",
     "@fontsource/cormorant-garamond": "^5.1.0",

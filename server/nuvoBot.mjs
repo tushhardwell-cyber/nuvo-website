@@ -1,16 +1,16 @@
-// Nuvō assistant — server-side Claude call shared by the Vercel function
-// (api/chat.js), the Netlify function (netlify/functions/chat.mjs) and the
-// Vite dev/preview middleware. The API key never reaches the browser.
+// Nuvō assistant — server-side LLM call (Groq, OpenAI-compatible API) shared by the Cloudflare Worker
+// (worker/index.js), the Vercel function (api/chat.js), the Netlify function
+// (netlify/functions/chat.mjs) and the Vite dev/preview middleware. The key never reaches the browser.
 //
-// Requires ANTHROPIC_API_KEY in the server environment.
+// Requires GROQ_API_KEY in the server environment (optional: GROQ_MODEL to change the model).
 
-import Anthropic from '@anthropic-ai/sdk';
 import { packs } from '../src/data/packs.js';
 import { faqs } from '../src/data/faq.js';
 import { site } from '../src/data/site.js';
 import { useCases } from '../src/data/useCases.js';
 
-const MODEL = 'claude-opus-5-5';
+const DEFAULT_MODEL = 'llama-3.3-70b-versatile';
+const ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
 const LANGS = { es: 'Spanish', fr: 'French', ru: 'Russian', zh: 'Simplified Chinese (Mandarin)', de: 'German' };
 const MAX_MESSAGES = 20;
 const MAX_CHARS_PER_MESSAGE = 1500;
@@ -59,12 +59,6 @@ ${faqText}`;
 
 const SYSTEM_PROMPT = buildSystemPrompt();
 
-let client;
-function getClient() {
-  if (!client) client = new Anthropic(); // reads ANTHROPIC_API_KEY from the environment
-  return client;
-}
-
 function validate(body) {
   const messages = body?.messages;
   if (!Array.isArray(messages) || messages.length === 0) return 'messages must be a non-empty array';
@@ -89,54 +83,42 @@ export async function handleChat(body) {
   const problem = validate(body);
   if (problem) return { status: 400, json: { error: problem } };
 
-  if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
-    return { status: 503, json: { error: 'assistant_not_configured' } };
-  }
+  const key = process.env.GROQ_API_KEY;
+  if (!key) return { status: 503, json: { error: 'assistant_not_configured' } };
 
-  const messages = body.messages.map((m) => ({ role: m.role, content: m.content.trim() }));
-
-  try {
-    const response = await getClient().beta.messages.create({
-      model: MODEL,
-      max_tokens: 2048,
-      betas: ['server-side-fallback-2026-07-01'],
-      fallbacks: 'default', // re-run a declined request on Anthropic's recommended fallback model
-      output_config: { effort: 'low' }, // short conversational answers
-      cache_control: { type: 'ephemeral' }, // the system prompt is identical on every request
-      system: LANGS[body.lang]
-        ? `${SYSTEM_PROMPT}
+  const system = LANGS[body.lang]
+    ? `${SYSTEM_PROMPT}
 
 LANGUAGE: The visitor is using the site in ${LANGS[body.lang]}. Write every reply in ${LANGS[body.lang]} (keep brand and tool names such as Nuvō, WhatsApp and Excel as they are).`
-        : SYSTEM_PROMPT,
-      messages,
+    : SYSTEM_PROMPT;
+  const messages = [{ role: 'system', content: system }, ...body.messages.map((m) => ({ role: m.role, content: m.content.trim() }))];
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+      body: JSON.stringify({
+        model: process.env.GROQ_MODEL || DEFAULT_MODEL,
+        messages,
+        temperature: 0.4,
+        max_tokens: 450, // short conversational answers
+      }),
     });
 
-    if (response.stop_reason === 'refusal') {
-      return {
-        status: 200,
-        json: { reply: "I can't help with that one here — but the Nuvō team can. Message us on WhatsApp or use /contact." },
-      };
-    }
-
-    const reply = response.content
-      .filter((b) => b.type === 'text')
-      .map((b) => b.text)
-      .join('\n')
-      .trim();
-
-    return { status: 200, json: { reply: reply || 'Sorry, I lost my train of thought — could you ask that again?' } };
-  } catch (error) {
-    if (error instanceof Anthropic.AuthenticationError || error instanceof Anthropic.PermissionDeniedError) {
-      console.error('[nuvo-bot] auth error:', error.message);
+    if (res.status === 401 || res.status === 403) {
+      console.error('[nuvo-bot] auth error', res.status);
       return { status: 503, json: { error: 'assistant_not_configured' } };
     }
-    if (error instanceof Anthropic.RateLimitError) {
-      return { status: 429, json: { error: 'busy' } };
-    }
-    if (error instanceof Anthropic.APIError) {
-      console.error(`[nuvo-bot] API error ${error.status}:`, error.message);
+    if (res.status === 429) return { status: 429, json: { error: 'busy' } };
+    if (!res.ok) {
+      console.error(`[nuvo-bot] API error ${res.status}:`, (await res.text()).slice(0, 300));
       return { status: 502, json: { error: 'upstream_error' } };
     }
+
+    const data = await res.json();
+    const reply = String(data?.choices?.[0]?.message?.content || '').trim();
+    return { status: 200, json: { reply: reply || 'Sorry, I lost my train of thought — could you ask that again?' } };
+  } catch (error) {
     console.error('[nuvo-bot] unexpected error:', error);
     return { status: 500, json: { error: 'server_error' } };
   }

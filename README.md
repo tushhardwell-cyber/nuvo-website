@@ -2,7 +2,7 @@
 
 A cinematic, multipage marketing site for **Nuvō — The Complete Business Transformation Agency** (Pune).
 
-**Stack:** React 18 · Vite 5 · React Router · GSAP · Framer Motion · Lenis smooth scroll · react-helmet-async · Anthropic SDK (assistant, server-side)
+**Stack:** React 18 · Vite 5 · React Router · GSAP · Framer Motion · Lenis smooth scroll · react-helmet-async · Groq API (assistant, server-side)
 
 ## Run it
 
@@ -76,7 +76,7 @@ The floating assistant calls `POST /api/chat`, which runs server-side (the API k
 - Shared handler: `server/nuvoBot.mjs` (model `claude-opus-5-5`, low effort for short chat replies, server-side refusal fallback enabled, system prompt built from `src/data/*`)
 - Vercel: `api/chat.js` · Netlify: `netlify/functions/chat.mjs` · Local: Vite middleware in `vite.config.js`
 
-Setup: add `ANTHROPIC_API_KEY` to your hosting environment variables (and to `.env.local` for local dev — see `.env.example`). Without a key the assistant still works: the readiness test runs fully in the browser and questions are answered from the site FAQ.
+Setup: add `GROQ_API_KEY` to your hosting environment variables (and to `.env.local` for local dev — see `.env.example`). Without a key the assistant still works: the readiness test runs fully in the browser and questions are answered from the site FAQ.
 
 Cost guardrails: conversations are capped at 20 messages / 12,000 characters. For a busy public site, also add rate limiting at your host (e.g. Vercel Firewall rules or Netlify rate limiting).
 
@@ -109,7 +109,7 @@ Accessibility & performance: respects `prefers-reduced-motion`, keyboard-navigab
   headlines (`RevealText`), SEO tags and the chat use `useLang().t()`.
 - **When you edit any English copy**, run `node scripts/i18n-missing.mjs` to list strings with no translation,
   then add them to a new part file (and `node scripts/fix-part.mjs <file>` if you write keys as `` `text`: [...] ``).
-- The Ask Nuvō assistant answers in the visitor's language when `ANTHROPIC_API_KEY` is set; without a key the
+- The Ask Nuvō assistant answers in the visitor's language when `GROQ_API_KEY` is set; without a key the
   quick-question chips and the readiness test are fully translated, while free typing falls back to a polite
   "ask the team" message.
 - Hetvik photos: save the two real photos as `resources/hetvik-front.jpg` and `resources/hetvik-floor.jpg`,
@@ -121,7 +121,7 @@ Accessibility & performance: respects `prefers-reduced-motion`, keyboard-navigab
 
 | Endpoint | What it does | Secret to add (Cloudflare → Workers → nuvo-website → Settings → Variables and Secrets) |
 |---|---|---|
-| `POST /api/chat` | Ask Nuvō live AI answers (replies in the visitor's language) | `ANTHROPIC_API_KEY` |
+| `POST /api/chat` | Ask Nuvō live AI answers (replies in the visitor's language) | `GROQ_API_KEY` |
 | `POST /api/lead` | Contact form → your inbox | `WEB3FORMS_KEY` (free, web3forms.com) **or** `LEAD_WEBHOOK_URL` |
 
 - Build command `npm run build` · deploy command `npx wrangler deploy` (Cloudflare's default for this repo).

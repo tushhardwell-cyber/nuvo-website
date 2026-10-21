@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import nuvoSeoStatic from './scripts/seo-static-plugin.mjs';
 
 // Serves POST /api/chat during `npm run dev` and `npm run preview`, using the same
-// handler as the Vercel / Netlify functions. Reads ANTHROPIC_API_KEY from .env.local.
+// handler as the Vercel / Netlify functions. Reads GROQ_API_KEY from .env.local.
 function nuvoChatApi() {
   const middleware = async (req, res, next) => {
     const route = req.url.split('?')[0];
@@ -41,7 +41,7 @@ function nuvoChatApi() {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  if (env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_API_KEY) process.env.ANTHROPIC_API_KEY = env.ANTHROPIC_API_KEY;
+  for (const k of ['GROQ_API_KEY', 'GROQ_MODEL', 'WEB3FORMS_KEY', 'LEAD_WEBHOOK_URL']) if (env[k] && !process.env[k]) process.env[k] = env[k];
 
   return {
     plugins: [react(), nuvoChatApi(), nuvoSeoStatic()],
