@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f7ecd2"/><stop offset=".3" stop-color="#e6c27a"/>
+    <stop offset=".62" stop-color="#c9972c"/><stop offset="1" stop-color="#8f6a1c"/>
+  </linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1b2a52"/><stop offset=".55" stop-color="#0b1226"/><stop offset="1" stop-color="#04070f"/>
+  </linearGradient>
+  <radialGradient id="glow" cx=".72" cy=".3" r=".6">
+    <stop offset="0" stop-color="#c9972c" stop-opacity=".35"/><stop offset="1" stop-color="#c9972c" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0"/></filter></defs>
+<rect width="1200" height="900" fill="url(#bg)"/>
+<rect width="1200" height="900" fill="url(#glow)"/>
+<rect x="120" y="140" width="960" height="620" rx="28" fill="#0b1226" stroke="#e6c27a" stroke-opacity=".35"/><rect x="190" y="481.6" width="50" height="218.4" rx="8" fill="url(#gold)" opacity="0.55"/><rect x="274" y="414.4" width="50" height="285.6" rx="8" fill="url(#gold)" opacity="0.5950000000000001"/><rect x="358" y="443.8" width="50" height="256.2" rx="8" fill="url(#gold)" opacity="0.64"/><rect x="442" y="364" width="50" height="336" rx="8" fill="url(#gold)" opacity="0.685"/><rect x="526" y="389.2" width="50" height="310.8" rx="8" fill="url(#gold)" opacity="0.73"/><rect x="610" y="330.4" width="50" height="369.6" rx="8" fill="url(#gold)" opacity="0.775"/><rect x="694" y="406" width="50" height="294" rx="8" fill="url(#gold)" opacity="0.8200000000000001"/><rect x="778" y="313.59999999999997" width="50" height="386.40000000000003" rx="8" fill="url(#gold)" opacity="0.865"/><rect x="862" y="347.2" width="50" height="352.8" rx="8" fill="url(#gold)" opacity="0.91"/><rect x="946" y="376.59999999999997" width="50" height="323.40000000000003" rx="8" fill="url(#gold)" opacity="0.9550000000000001"/><polyline points="215,441.6 299,374.4 383,403.8 467,324 551,349.2 635,290.4 719,366 803,273.59999999999997 887,307.2 971,336.59999999999997" fill="none" stroke="#f7ecd2" stroke-width="4"/><rect x="200" y="180" width="260" height="90" rx="16" fill="#1b2a52"/><text x="222" y="216" font-family="Arial" font-size="16" fill="#aab2c8" letter-spacing="2">OUTPUT</text><text x="222" y="254" font-family="Arial" font-size="30" font-weight="bold" fill="#f7ecd2">12,480</text><rect x="500" y="180" width="260" height="90" rx="16" fill="#1b2a52"/><text x="522" y="216" font-family="Arial" font-size="16" fill="#aab2c8" letter-spacing="2">REJECTION</text><text x="522" y="254" font-family="Arial" font-size="30" font-weight="bold" fill="#f7ecd2">1.8%</text><rect x="800" y="180" width="260" height="90" rx="16" fill="#1b2a52"/><text x="822" y="216" font-family="Arial" font-size="16" fill="#aab2c8" letter-spacing="2">ATTENDANCE</text><text x="822" y="254" font-family="Arial" font-size="30" font-weight="bold" fill="#f7ecd2">96%</text><path d="M1010 760 l40 -24 l40 24 v46 l-40 24 l-40 -24z" fill="none" stroke="url(#gold)" stroke-width="5"/>
+<rect width="1200" height="900" filter="url(#grain)"/>
+</svg>

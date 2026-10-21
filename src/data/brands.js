@@ -1,0 +1,136 @@
+// Tool logos for integrations and use-case cards.
+// Real marks come from Simple Icons (CC0). Tools that Simple Icons doesn't carry
+// get a clean tile in the brand's own colour with its short mark.
+import {
+  siWhatsapp,
+  siGooglesheets,
+  siGmail,
+  siGoogledrive,
+  siGooglecalendar,
+  siZoho,
+  siRazorpay,
+  siInstagram,
+  siFacebook,
+  siPaytm,
+  siPhonepe,
+  siHubspot,
+  siWordpress,
+  siShopify,
+  siGoogleanalytics,
+  siGooglesearchconsole,
+  siGoogleappsscript,
+  siMake,
+  siZapier,
+  siN8n,
+  siAirtable,
+  siClaude,
+  siGooglegemini,
+  siMistralai,
+  siStripe,
+  siPaypal,
+  siQuickbooks,
+  siXero,
+} from 'simple-icons';
+
+const si = (icon, label) => ({ label, path: icon.path, color: `#${icon.hex}` });
+const mono = (mark, color, label) => ({ label, mark, color });
+
+const BRANDS = {
+  whatsapp: si(siWhatsapp, 'WhatsApp'),
+  sheets: si(siGooglesheets, 'Google Sheets'),
+  gmail: si(siGmail, 'Gmail'),
+  drive: si(siGoogledrive, 'Google Drive'),
+  calendar: si(siGooglecalendar, 'Google Calendar'),
+  zoho: si(siZoho, 'Zoho'),
+  razorpay: si(siRazorpay, 'Razorpay'),
+  instagram: si(siInstagram, 'Instagram'),
+  facebook: si(siFacebook, 'Facebook'),
+  paytm: si(siPaytm, 'Paytm'),
+  phonepe: si(siPhonepe, 'PhonePe'),
+  hubspot: si(siHubspot, 'HubSpot'),
+  wordpress: si(siWordpress, 'WordPress'),
+  shopify: si(siShopify, 'Shopify'),
+  analytics: si(siGoogleanalytics, 'Google Analytics'),
+  searchconsole: si(siGooglesearchconsole, 'Search Console'),
+  appsscript: si(siGoogleappsscript, 'Apps Script'),
+  make: si(siMake, 'Make'),
+  zapier: si(siZapier, 'Zapier'),
+  n8n: si(siN8n, 'n8n'),
+  airtable: si(siAirtable, 'Airtable'),
+  claude: si(siClaude, 'Claude'),
+  gemini: si(siGooglegemini, 'Gemini'),
+  mistral: si(siMistralai, 'Mistral'),
+  stripe: si(siStripe, 'Stripe'),
+  paypal: si(siPaypal, 'PayPal'),
+  quickbooks: si(siQuickbooks, 'QuickBooks'),
+  xero: si(siXero, 'Xero'),
+  // Full-colour marks (drawn from the official logos)
+  google: {
+    label: 'Google Business',
+    paths: [
+      { fill: '#4285F4', d: 'M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.76h3.56c2.08-1.92 3.28-4.74 3.28-8.09Z' },
+      { fill: '#34A853', d: 'M12 23c2.97 0 5.46-.98 7.28-2.66l-3.56-2.76c-.99.66-2.25 1.06-3.72 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23Z' },
+      { fill: '#FBBC05', d: 'M5.84 14.11A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.45.34-2.11V7.05H2.18A11 11 0 0 0 1 12c0 1.78.43 3.45 1.18 4.95l3.66-2.84Z' },
+      { fill: '#EA4335', d: 'M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15A10.6 10.6 0 0 0 12 1 11 11 0 0 0 2.18 7.05l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38Z' },
+    ],
+  },
+  excel: {
+    label: 'Excel',
+    paths: [
+      { fill: '#185C37', d: 'M14.5 2H7.6c-.6 0-1.1.5-1.1 1.1V7l8 1.5 3.5-1.5V3.1c0-.6-.5-1.1-1.1-1.1Z' },
+      { fill: '#21A366', d: 'M6.5 7v5l8 1.5 3.5-1.5V7Z' },
+      { fill: '#107C41', d: 'M6.5 12v5l8 1.5 3.5-1.5v-5Z' },
+      { fill: '#33C481', d: 'M14.5 2h6.4c.6 0 1.1.5 1.1 1.1V7h-7.5Z' },
+      { fill: '#21A366', d: 'M14.5 7H22v5h-7.5Z' },
+      { fill: '#107C41', d: 'M14.5 12H22v5h-7.5Z' },
+      { fill: '#185C37', d: 'M6.5 17v3.9c0 .6.5 1.1 1.1 1.1h13.3c.6 0 1.1-.5 1.1-1.1V17Z' },
+      { fill: '#107C41', d: 'M3.1 6.5h8.3c.6 0 1.1.5 1.1 1.1v8.8c0 .6-.5 1.1-1.1 1.1H3.1c-.6 0-1.1-.5-1.1-1.1V7.6c0-.6.5-1.1 1.1-1.1Z' },
+      { fill: '#fff', d: 'm4.6 15.2 2.1-3.3-1.9-3.2h1.6l1 2 .2.5.2-.5 1.1-2h1.5l-2 3.2 2 3.3H8.8L7.6 13l-1.2 2.2Z' },
+    ],
+  },
+  outlook: mono('O', '#0F6CBD', 'Outlook'),
+  onedrive: mono('☁', '#0364B8', 'OneDrive'),
+  powerautomate: mono('PA', '#0066FF', 'Power Automate'),
+  vba: mono('VB', '#217346', 'VBA Macros'),
+  linkedin: mono('in', '#0A66C2', 'LinkedIn'),
+  tally: mono('T', '#1F3B82', 'Tally'),
+  busy: mono('B', '#D2232A', 'Busy'),
+  vyapar: mono('V', '#E5322D', 'Vyapar'),
+  indiamart: mono('IM', '#2E3192', 'IndiaMART'),
+  justdial: mono('Jd', '#FF6600', 'Justdial'),
+  canva: mono('C', '#00C4CC', 'Canva'),
+  openai: mono('AI', '#111111', 'OpenAI'),
+  upi: mono('UPI', '#5F6368', 'UPI'),
+  private: mono('◆', '#152142', 'Private models'),
+  website: mono('www', '#152142', 'Website'),
+};
+
+// Display names used across the site → brand key
+const ALIASES = {
+  'whatsapp business': 'whatsapp',
+  'google sheets': 'sheets',
+  'google drive': 'drive',
+  'google calendar': 'calendar',
+  'google business': 'google',
+  'google business profile': 'google',
+  'zoho books': 'zoho',
+  'zoho crm': 'zoho',
+  'tally prime': 'tally',
+  'microsoft excel': 'excel',
+  'google analytics': 'analytics',
+  'search console': 'searchconsole',
+  'google apps script': 'appsscript',
+  'apps script': 'appsscript',
+  'vba macros': 'vba',
+  'power automate': 'powerautomate',
+  'google gemini': 'gemini',
+  'upi / phonepe': 'phonepe',
+  'paytm business': 'paytm',
+  'local / private models': 'private',
+};
+
+export function brandFor(name) {
+  const k = name.toLowerCase().trim();
+  const key = ALIASES[k] || k.replace(/[^a-z0-9]/g, '');
+  return BRANDS[key] || { label: name, mark: name.slice(0, 2), color: '#5a6178' };
+}

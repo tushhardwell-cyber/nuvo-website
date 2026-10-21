@@ -1,0 +1,93 @@
+// Per-plan visuals, "how it flows" stories and connected tools.
+// Photos / videos come from /public/media (built by scripts/build-media.mjs).
+
+export const planMedia = {
+  'digital-foundation': {
+    accent: '#b4612e',
+    kind: 'photo',
+    src: '/media/presence-storefront.webp',
+    w: 768,
+    h: 418,
+    pos: '50% 50%',
+    alt: 'A busy neighborhood storefront at golden hour',
+    pins: [
+      { icon: 'chat', text: 'New lead → WhatsApp alert', pos: 'a' },
+      { icon: 'search', text: 'Found on Google Maps', pos: 'b' },
+      { icon: 'check', text: 'Review request sent', pos: 'c' },
+    ],
+    tools: ['WhatsApp', 'Google Business', 'LinkedIn', 'Google Sheets', 'Instagram', 'WordPress'],
+    storyTitle: 'From a stranger to a booked call.',
+    story: [
+      { t: 'They find you', d: 'Your Google profile and website show up first for what you sell.' },
+      { t: 'Your site captures the inquiry', d: 'A clear form, one tap to call, one tap to WhatsApp.' },
+      { t: 'You are alerted in seconds', d: 'The owner gets a WhatsApp alert and the customer gets an instant reply.' },
+      { t: 'Nothing is forgotten', d: 'Every lead is logged and a follow-up is set for the next day.' },
+    ],
+  },
+  'smart-operations': {
+    accent: '#2c4a9a',
+    kind: 'photo',
+    src: '/media/desk-morning.webp',
+    w: 512,
+    h: 768,
+    pos: '50% 40%',
+    alt: 'An owner’s desk in the morning — coffee, notes and phone',
+    pins: [
+      { icon: 'chart', text: '9:00 AM summary sent', pos: 'a' },
+      { icon: 'grid', text: 'Low stock — 2 items', pos: 'b' },
+      { icon: 'mail', text: 'Payment reminder sent', pos: 'c' },
+    ],
+    tools: ['Microsoft Excel', 'Google Sheets', 'Gmail', 'WhatsApp', 'Google Drive', 'Outlook'],
+    storyTitle: 'Your day, before you reach the office.',
+    story: [
+      { t: 'One screen, the whole business', d: 'Sales, leads, unpaid invoices and stock on a single dashboard.' },
+      { t: '9:00 AM summary on WhatsApp', d: 'Yesterday’s numbers and today’s follow-ups, waiting on your phone.' },
+      { t: 'Reminders run themselves', d: 'Payments chased politely, stock alerts sent, clients nudged.' },
+      { t: 'Sunday report card', d: 'This week vs last week, explained in plain language.' },
+    ],
+  },
+  'automation-ai': {
+    accent: '#14606f',
+    kind: 'video',
+    src: '/media/automate-particles.mp4',
+    poster: '/media/automate-particles-poster.jpg',
+    w: 1280,
+    h: 720,
+    alt: 'Glowing particles flowing between connected points',
+    pins: [
+      { icon: 'cpu', text: 'Inquiry sorted by AI', pos: 'a' },
+      { icon: 'mail', text: 'Reply drafted for review', pos: 'b' },
+      { icon: 'flow', text: 'Owner approved on WhatsApp', pos: 'c' },
+    ],
+    tools: ['Claude', 'OpenAI', 'Make', 'n8n', 'Zapier', 'Apps Script'],
+    storyTitle: 'Work moves on its own — with you in control.',
+    story: [
+      { t: 'It arrives', d: 'An inquiry, invoice or message lands in your inbox or sheet.' },
+      { t: 'AI reads and sorts it', d: 'Classified, summarized and routed to the right person.' },
+      { t: 'A draft is prepared', d: 'Replies and documents are drafted — never sent blind.' },
+      { t: 'A human approves', d: 'You review what matters, on WhatsApp or email. Everything is logged.' },
+    ],
+  },
+  'custom-software': {
+    accent: '#1f6b4a',
+    kind: 'photo',
+    src: '/media/hetvik-floor.webp',
+    w: 785,
+    h: 456,
+    pos: '45% 50%',
+    alt: 'The Hetvik Components shop floor with its row of metal presses',
+    pins: [
+      { icon: 'grid', text: 'Stock reorder triggered', pos: 'a' },
+      { icon: 'chat', text: 'Invoice sent on WhatsApp', pos: 'b' },
+      { icon: 'check', text: 'Attendance logged', pos: 'c' },
+    ],
+    tools: ['Microsoft Excel', 'QuickBooks', 'Zoho Books', 'Stripe', 'WhatsApp', 'Google Drive'],
+    storyTitle: 'One system instead of ten files.',
+    story: [
+      { t: 'Orders come in', d: 'Entered once — by staff, dealers or customers.' },
+      { t: 'Stock updates itself', d: 'Inventory moves, low-stock alerts fire, purchasing is prompted.' },
+      { t: 'Billing goes out', d: 'Tax-ready invoices, sent on WhatsApp in one tap.' },
+      { t: 'Ledgers stay true', d: 'Dealer balances, attendance and reports always match.' },
+    ],
+  },
+};

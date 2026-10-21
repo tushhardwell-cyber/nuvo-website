@@ -1,0 +1,502 @@
+/* ─────────────────────────────────────────────────────────────
+   Footer watermark + "Let's talk" section (reference layout,
+   in Nuvō navy & gold)
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Footer: big NUVŌ as a watermark behind the whole footer ── */
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: 26px;
+}
+.footer-big {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  max-width: none;
+  padding: 0;
+}
+.footer-wordmark {
+  font-size: clamp(5.5rem, 21vw, 21rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  padding-top: 0.24em;
+  margin-top: -0.06em;
+  white-space: nowrap;
+  background: linear-gradient(180deg, rgba(214, 164, 58, 0.22) 0%, rgba(201, 151, 44, 0.05) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.footer-grid,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+.footer-grid {
+  padding-block: 34px;
+}
+
+/* ── Section shell ────────────────────────────────────── */
+.talk {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 85% 0%, rgba(47, 69, 128, 0.45), transparent 55%),
+    linear-gradient(180deg, #0b1226 0%, #070b17 100%);
+}
+.talk.is-page {
+  min-height: 100svh;
+  padding: 140px 0 clamp(72px, 9vw, 120px);
+}
+.talk-glow {
+  width: 760px;
+  height: 760px;
+  left: -260px;
+  bottom: -360px;
+  opacity: 0.35;
+}
+.talk-head {
+  display: grid;
+  gap: 16px;
+  margin-bottom: clamp(36px, 4.5vw, 56px);
+}
+.talk-head .h2 {
+  font-size: clamp(2.3rem, 4.4vw, 3.9rem);
+}
+.talk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+/* ── Left: reach rows ─────────────────────────────────── */
+.reach {
+  display: grid;
+}
+.reach-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line-soft);
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.reach-head strong {
+  color: #fff;
+  font-weight: 700;
+}
+.reach-head i {
+  width: 34px;
+  height: 1px;
+  background: var(--line-strong);
+}
+.reach-head span {
+  color: #e6c27a;
+}
+.reach-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+  color: #fff;
+}
+.reach-row-link {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+  color: #fff;
+}
+.reach-ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(238, 240, 246, 0.18);
+  color: #e9ecf4;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.reach-txt {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+.reach-txt small {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e6c27a;
+}
+.reach-txt b {
+  font-family: var(--font-sans);
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #fff;
+}
+.reach-txt .reach-email {
+  font-size: clamp(0.98rem, 1.3vw, 1.18rem);
+  letter-spacing: -0.01em;
+  overflow-wrap: normal;
+}
+.reach-go {
+  flex: none;
+  color: #8f98b2;
+  transition: transform 0.35s var(--ease-out), color 0.3s;
+}
+a.reach-row:hover .reach-ic,
+.reach-row-link:hover .reach-ic {
+  background: #e6c27a;
+  border-color: #e6c27a;
+  color: #0b1226;
+}
+a.reach-row:hover .reach-go {
+  color: #e6c27a;
+  transform: translate(3px, -3px);
+}
+.reach-copy {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(238, 240, 246, 0.18);
+  color: #c3cadb;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.reach-copy:hover {
+  border-color: #e6c27a;
+  color: #e6c27a;
+}
+.reach-copy.is-done {
+  background: #4ade80;
+  border-color: #4ade80;
+  color: #0b1226;
+}
+.reach-areas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 0 26px;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8f98b2;
+}
+.reach-areas .icon {
+  flex: none;
+  color: #e6c27a;
+}
+.reach-check {
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: 10px;
+  min-height: 230px;
+  padding: 28px;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(238, 240, 246, 0.08);
+}
+.reach-check-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(11, 18, 38, 0.15) 0%, rgba(11, 18, 38, 0.92) 78%),
+    url('/media/desk-morning.webp') center 35% / cover no-repeat;
+  transition: transform 1.2s var(--ease-out);
+}
+.reach-check:hover .reach-check-bg {
+  transform: scale(1.05);
+}
+.reach-check-ic {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  color: #152142;
+  transition: transform 0.4s var(--ease-out);
+}
+.reach-check:hover .reach-check-ic {
+  transform: rotate(-18deg) scale(1.05);
+}
+.reach-check small {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d6dbe8;
+}
+.reach-check strong {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #fff;
+  max-width: 18ch;
+}
+
+/* ── Right: form card ─────────────────────────────────── */
+.talk-card {
+  padding: clamp(26px, 3.4vw, 46px);
+  border-radius: 30px;
+  background: rgba(21, 33, 66, 0.55);
+  border: 1px solid rgba(238, 240, 246, 0.12);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 50px 100px -50px rgba(0, 0, 0, 0.8);
+}
+.tform {
+  display: grid;
+  gap: 8px;
+}
+.tform-top {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.tform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.tform-badge i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  animation: ping 2s infinite;
+}
+.tform-top p {
+  font-size: 0.92rem;
+  color: #bcc3d6;
+}
+.tform-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.ufield {
+  position: relative;
+  display: block;
+  padding-top: 22px;
+}
+.ufield input,
+.ufield textarea {
+  width: 100%;
+  padding: 10px 0 12px;
+  border: 0;
+  border-bottom: 1px solid rgba(238, 240, 246, 0.2);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1.02rem;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+.ufield textarea {
+  min-height: 120px;
+}
+.ufield input:focus,
+.ufield textarea:focus {
+  outline: none;
+  border-bottom-color: #e6c27a;
+}
+.ufield-label {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  font-size: 1.02rem;
+  color: #aab2c8;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transition: transform 0.3s var(--ease-out), color 0.3s;
+}
+.ufield input:focus + .ufield-label,
+.ufield input:not(:placeholder-shown) + .ufield-label,
+.ufield textarea:focus + .ufield-label,
+.ufield textarea:not(:placeholder-shown) + .ufield-label {
+  transform: translateY(-26px) scale(0.78);
+  color: #e6c27a;
+}
+.ufield em {
+  display: block;
+  margin-top: 6px;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: #fca5a5;
+}
+.ufield.has-error input {
+  border-bottom-color: #f87171;
+}
+.tform-submit {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  height: 62px;
+  padding: 0 7px 0 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e3bd66 0%, #c9972c 100%);
+  color: #131a2e;
+  font-weight: 750;
+  font-size: 1.02rem;
+  box-shadow: 0 16px 34px -16px rgba(201, 151, 44, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.tform-submit i {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  color: #152142;
+  transition: transform 0.4s var(--ease-out);
+}
+.tform-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px -16px rgba(201, 151, 44, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.tform-submit:hover i {
+  transform: rotate(-20deg);
+}
+.tform-submit:disabled {
+  opacity: 0.7;
+}
+.tform-note {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: #8f98b2;
+}
+
+@media (max-width: 960px) {
+  .talk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .tform-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .reach-ic {
+    width: 46px;
+    height: 46px;
+  }
+  .reach-row,
+  .reach-row-link {
+    gap: 14px;
+  }
+}
+
+/* ── Integrations orbit: bigger, shifted right ──────────── */
+.integ-grid {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+.integ-hub {
+  --k: 1;
+  height: calc(780px * var(--k));
+  transform: translateX(calc(70px * var(--k)));
+}
+.integ-core {
+  width: calc(200px * var(--k));
+  height: calc(200px * var(--k));
+}
+@media (max-width: 1240px) {
+  .integ-hub { --k: 0.85; }
+}
+@media (max-width: 1000px) {
+  .integ-hub { --k: 0.8; transform: none; margin: 0; }
+}
+@media (max-width: 760px) {
+  .integ-hub { --k: 0.58; }
+}
+@media (max-width: 480px) {
+  .integ-hub { --k: 0.46; }
+  .orbit-chip { padding: 5px 9px 5px 6px; }
+  .orbit-chip .bm-name { font-size: 0.75rem; }
+}
+
+/* ── Footer watermark sits higher (bottom ≈ 3/4 of the footer) ── */
+.footer-big {
+  align-items: start;
+}
+.footer-wordmark {
+  margin-top: -0.2em;
+}
+@media (max-width: 1000px) {
+  .integ-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .integ-hub { --k: 0.5; }
+  .orbit-chip { padding: 7px; }
+  .orbit-chip .bm-name { display: none; }
+  .orbit-chip .bm-svg,
+  .orbit-chip .bm-tile { width: 20px; height: 20px; }
+  .integ-core { min-width: 100px; min-height: 100px; gap: 2px; }
+  .integ-core .omark { width: 34px; height: 34px; }
+  .integ-core strong { font-size: 0.75rem; }
+}
+
+/* Orbit: more breathing room from the text column */
+@media (min-width: 1001px) {
+  .integ-grid {
+    grid-template-columns: 0.8fr 1.2fr;
+    column-gap: clamp(60px, 7vw, 140px);
+  }
+  .integ-hub {
+    transform: translateX(calc(130px * var(--k)));
+  }
+}
+.integ-core strong {
+  font-size: 1.35rem;
+  letter-spacing: 0.14em;
+}
+.integ-core small {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.integ-core small {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+}

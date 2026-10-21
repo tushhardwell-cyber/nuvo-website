@@ -1,0 +1,181 @@
+/* ── Language switcher (nav) ───────────────────────────── */
+.lang { position: relative; }
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(21, 33, 66, 0.16);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  color: #152142;
+  font: 700 0.92rem/1 var(--font-body, inherit);
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 22px -14px rgba(20, 30, 60, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.lang-btn:hover { background: rgba(255, 255, 255, 0.8); transform: translateY(-1px); }
+.lang-btn:focus-visible { outline: 2px solid #c9972c; outline-offset: 2px; }
+.lang-chev { opacity: 0.6; transition: transform 0.25s; }
+.lang-chev.is-up { transform: rotate(180deg); }
+.lang-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 60;
+  min-width: 190px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border-radius: 16px;
+  border: 1px solid rgba(21, 33, 66, 0.12);
+  background: rgba(255, 253, 249, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 24px 50px -20px rgba(20, 30, 60, 0.5);
+}
+.lang-list button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: #152142;
+  font: 600 0.95rem/1.2 var(--font-body, inherit);
+  cursor: pointer;
+}
+.lang-list button small { color: #8a7a55; font-weight: 700; letter-spacing: 0.08em; }
+.lang-list button:hover { background: rgba(201, 151, 44, 0.14); }
+.lang-list button.is-on { background: #152142; color: #f7ecd2; }
+.lang-list button.is-on small { color: #e6c27a; }
+@media (max-width: 900px) {
+  .lang-btn { height: 40px; padding: 0 10px; gap: 6px; }
+  .lang-btn .lang-chev { display: none; }
+  .nav-actions .lang { order: -1; margin-right: 4px; }
+}
+
+/* ── Chinese / Russian typography ─────────────────────── */
+html[lang='zh'] body,
+html[lang='zh'] button,
+html[lang='zh'] input,
+html[lang='zh'] textarea {
+  font-family: var(--font-body), 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+}
+html[lang='zh'] .display,
+html[lang='zh'] h1,
+html[lang='zh'] h2,
+html[lang='zh'] h3,
+html[lang='zh'] h4,
+html[lang='zh'] blockquote,
+html[lang='zh'] .reveal-text {
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  letter-spacing: 0.02em;
+  line-break: strict;
+}
+html[lang='zh'] em,
+html[lang='zh'] i { font-style: normal; }
+html[lang='zh'] .eyebrow { letter-spacing: 0.12em; }
+html[lang='zh'] .rt-mask { margin-right: 0; }
+html[lang='ru'] .reveal-text,
+html[lang='ru'] .display { overflow-wrap: anywhere; hyphens: auto; }
+html[lang='ru'] .eyebrow,
+html[lang='ru'] .nav-btn { letter-spacing: 0.06em; }
+
+/* commitments card: keep the CTA button whole instead of squeezing it */
+.commit ul { flex: 1; min-width: 0; }
+.commit .btn { flex: none; white-space: nowrap; }
+
+/* long translations: keep nav icons from shrinking */
+.nav-btn svg, .nav-btn .icon { flex: none; }
+@media (max-width: 1240px) {
+  .nav-btn { padding-left: 14px; padding-right: 14px; }
+}
+
+/* translated text is longer: let small-screen labels shrink / wrap instead of widening the page */
+@media (max-width: 600px) {
+  html:not([lang='en']) .logo-sub {
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  html:not([lang='en']) .eyebrow { white-space: normal; flex-wrap: wrap; }
+  html:not([lang='en']) .astage-stat,
+  html:not([lang='en']) .hero-stat { min-width: 0; overflow-wrap: anywhere; }
+  html:not([lang='en']) .nav-inner { min-width: 0; }
+  html:not([lang='en']) .nav-logo { min-width: 0; flex: 0 1 auto; }
+}
+
+@media (max-width: 600px) {
+  html:not([lang='en']) .eyebrow { white-space: normal !important; max-width: 100%; }
+  html:not([lang='en']) em { white-space: normal; }
+  html:not([lang='en']) .btn { white-space: normal; max-width: 100%; text-align: center; }
+  html:not([lang='en']) .pv-table { max-width: 100%; overflow: hidden; }
+}
+
+html:not([lang='en']) .catalogue { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+html:not([lang='en']) .cat-group,
+html:not([lang='en']) .cat-group li,
+html:not([lang='en']) .cat-group span { min-width: 0; overflow-wrap: anywhere; }
+
+.lang-list { min-width: 210px; }
+.lang-list button span { white-space: nowrap; }
+
+/* About → "The honest answer": a slimmer band */
+.section.honest { padding-block: clamp(36px, 4vw, 56px); }
+.honest-inner { gap: clamp(24px, 4vw, 64px); align-items: start; }
+.honest-inner .h2 { margin-top: 10px; }
+.section.honest .container + .container { margin-top: clamp(16px, 2vw, 28px); }
+
+/* Contact details (every "Let's talk" section): phone, WhatsApp and email share one size */
+.reach-txt b,
+.reach-txt .reach-email,
+.talk .reach-txt b,
+.talk .reach-txt .reach-email {
+  font-size: clamp(0.98rem, 1.3vw, 1.18rem);
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+@media (min-width: 1100px) {
+  .reach-txt b,
+  .talk .reach-txt b,
+  .talk .reach-txt .reach-email { font-size: 1rem; }
+}
+
+/* Services → Full catalog: video background */
+.catalog-vid { position: relative; overflow: hidden; background: #0d1a2c; }
+.catalog-vid > .container { position: relative; z-index: 2; }
+.catalog-vid-bg { position: absolute !important; inset: 0; z-index: 0; }
+.catalog-vid-bg video, .catalog-vid-bg img { width: 100%; height: 100%; object-fit: cover; }
+.catalog-vid-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 14, 30, 0.55) 0%, rgba(8, 14, 30, 0.22) 30%, rgba(8, 14, 30, 0.22) 72%, rgba(8, 14, 30, 0.6) 100%);
+}
+/* heading + intro read on the dark video */
+.catalog-vid .section-head .h2,
+.catalog-vid .reveal-text,
+.catalog-vid .lead { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45); }
+.catalog-vid .reveal-text em { color: #e6c27a; }
+.catalog-vid .eyebrow, .catalog-vid .eyebrow .eyebrow-num { color: #e6c27a; }
+.catalog-vid .eyebrow .eyebrow-bar { background: #e6c27a; }
+.catalog-vid .lead { color: #e6eaf5; }
+/* cards stay light, slightly see-through */
+.catalog-vid .cat-group {
+  background: rgba(255, 253, 249, 0.93);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-color: rgba(255, 255, 255, 0.5);
+}

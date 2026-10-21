@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<defs>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f7ecd2"/><stop offset=".3" stop-color="#e6c27a"/>
+    <stop offset=".62" stop-color="#c9972c"/><stop offset="1" stop-color="#8f6a1c"/>
+  </linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#1b2a52"/><stop offset=".55" stop-color="#0b1226"/><stop offset="1" stop-color="#04070f"/>
+  </linearGradient>
+  <radialGradient id="glow" cx=".72" cy=".3" r=".6">
+    <stop offset="0" stop-color="#c9972c" stop-opacity=".35"/><stop offset="1" stop-color="#c9972c" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0"/></filter></defs>
+<rect width="1200" height="900" fill="url(#bg)"/>
+<rect width="1200" height="900" fill="url(#glow)"/>
+<ellipse cx="140" cy="160" rx="52" ry="66" fill="#f6f1e6" opacity="0.32415290339305336"/><ellipse cx="300" cy="160" rx="52" ry="66" fill="#f6f1e6" opacity="0.18211018461930584"/><ellipse cx="460" cy="160" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="620" cy="160" rx="52" ry="66" fill="#f6f1e6" opacity="0.20586246263781793"/><ellipse cx="780" cy="160" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="940" cy="160" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="1100" cy="160" rx="52" ry="66" fill="#f6f1e6" opacity="0.2769029084564214"/><ellipse cx="220" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.30335148454024596"/><ellipse cx="380" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.21484628900405606"/><ellipse cx="540" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.27960913768001755"/><ellipse cx="700" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.2767819110274147"/><ellipse cx="860" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.32448036423370274"/><ellipse cx="1020" cy="310" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="1180" cy="310" rx="52" ry="66" fill="#f6f1e6" opacity="0.24261109257360092"/><ellipse cx="140" cy="460" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="300" cy="460" rx="52" ry="66" fill="#f6f1e6" opacity="0.26875084702740504"/><ellipse cx="460" cy="460" rx="52" ry="66" fill="#f6f1e6" opacity="0.3223990995831779"/><ellipse cx="620" cy="460" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="780" cy="460" rx="52" ry="66" fill="#f6f1e6" opacity="0.20707725549775852"/><ellipse cx="940" cy="460" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="1100" cy="460" rx="52" ry="66" fill="#f6f1e6" opacity="0.17051463834057995"/><ellipse cx="220" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.22569399498933368"/><ellipse cx="380" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.32745233974182264"/><ellipse cx="540" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.28585443981537084"/><ellipse cx="700" cy="610" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="860" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.1946981689098274"/><ellipse cx="1020" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.2417602360823753"/><ellipse cx="1180" cy="610" rx="52" ry="66" fill="#f6f1e6" opacity="0.178589979930399"/><ellipse cx="140" cy="760" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="300" cy="760" rx="52" ry="66" fill="#f6f1e6" opacity="0.21309268896756015"/><ellipse cx="460" cy="760" rx="52" ry="66" fill="#f6f1e6" opacity="0.2728842071191261"/><ellipse cx="620" cy="760" rx="52" ry="66" fill="url(#gold)" opacity="1"/><ellipse cx="780" cy="760" rx="52" ry="66" fill="#f6f1e6" opacity="0.17311008050396115"/><ellipse cx="940" cy="760" rx="52" ry="66" fill="#f6f1e6" opacity="0.19671880110792705"/><ellipse cx="1100" cy="760" rx="52" ry="66" fill="#f6f1e6" opacity="0.22479005851297645"/><rect x="760" y="640" width="360" height="170" rx="22" fill="#0b1226" stroke="url(#gold)" stroke-width="2"/>
+      <text x="790" y="690" font-family="Arial" font-size="20" fill="#e6c27a" letter-spacing="3">TODAY'S RATE · 7:00 AM</text>
+      <text x="790" y="770" font-family="Georgia, serif" font-size="64" fill="#f7ecd2">₹ 5.40</text>
+<rect width="1200" height="900" filter="url(#grain)"/>
+</svg>
