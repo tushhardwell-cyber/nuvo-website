@@ -30,8 +30,10 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
     const pre = new IntersectionObserver(
       ([e]) => {
         if (e.isIntersecting) {
-          setLoad(true);
           pre.disconnect();
+          // let the page's own scripts/styles/fonts finish first, then fetch the video
+          if (document.readyState === 'complete') setLoad(true);
+          else window.addEventListener('load', () => setTimeout(() => setLoad(true), 150), { once: true });
         }
       },
       { rootMargin: '500px 0px' }
