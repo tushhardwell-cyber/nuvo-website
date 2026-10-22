@@ -11,7 +11,8 @@
     "assets": "node scripts/generate-assets.mjs",
     "media": "node scripts/build-media.mjs",
     "type": "node scripts/build-type.mjs",
-    "i18n": "node scripts/build-i18n.mjs"
+    "i18n": "node scripts/build-i18n.mjs",
+    "media:mobile": "node scripts/build-mobile-videos.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.1.0",

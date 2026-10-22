@@ -13,6 +13,11 @@ const lowData = () => {
 const MEDIA_V = '3';
 const bust = (u) => (u ? `${u}${u.includes('?') ? '&' : '?'}v=${MEDIA_V}` : u);
 
+// Phones (<= 900 px) and data-saver visitors get the lighter <name>-m.mp4 copy (scripts/build-mobile-videos.mjs);
+// desktops keep the full-resolution file.
+const smallScreen = () =>
+  typeof window !== 'undefined' && (window.matchMedia('(max-width: 900px)').matches || !!navigator.connection?.saveData);
+
 // Muted looping video that plays only while on screen.
 // Shown at its own aspect ratio (pass `ratio`, e.g. "16 / 9") so it is never stretched.
 // Reduced-motion visitors get the still poster.
@@ -20,6 +25,7 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
   const ref = useRef(null);
   const reduce = useReducedMotion() || lowData();
   const [ready, setReady] = useState(false);
+  const [file] = useState(() => (smallScreen() && /.mp4$/.test(src) ? src.replace(/.mp4$/, '-m.mp4') : src));
   const [load, setLoad] = useState(false); // download the file only when it is about to be seen
   const visible = useRef(false); // on screen right now — lets a late-loading file start as soon as it can
 
@@ -67,7 +73,7 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
       ) : (
         <video
           ref={ref}
-          src={load ? bust(src) : undefined}
+          src={load ? bust(file) : undefined}
           poster={bust(poster)}
           muted
           loop
