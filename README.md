@@ -130,3 +130,10 @@ Accessibility & performance: respects `prefers-reduced-motion`, keyboard-navigab
   re-encoded by `npm run media` to ~19 MB each at full 1080p.
 - Local test: `npm run build && npx wrangler dev` (put secrets in a git-ignored `.dev.vars` file).
 - Without the secrets the site still works: the form opens WhatsApp, the chat answers from the built-in FAQ.
+
+### Video delivery (speed)
+- Desktop videos are produced by `node scripts/optimize-desktop-videos.mjs` (1080p, ≤ 30 fps, ~3 Mbps — HD-looking, plays
+  smoothly on ordinary broadband; the two former 4K clips are now `hero-earth-hd` / `process-night-hd`).
+- Phones, Data Saver and slow links (< 7 Mbps) automatically get `<name>-m.mp4` from `node scripts/build-mobile-videos.mjs`.
+- Run both scripts after replacing any video, bump `MEDIA_V` in `components/ui/Video.jsx`, and don't re-run the old video
+  blocks of `build-media.mjs` (they would bring back the heavy 4K files).

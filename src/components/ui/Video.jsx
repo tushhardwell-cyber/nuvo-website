@@ -10,13 +10,17 @@ const lowData = () => {
 
 // Bump this when a media file is replaced: it changes every video/poster URL so browsers and CDNs
 // never reuse an older (or missing) copy.
-const MEDIA_V = '3';
+const MEDIA_V = '4';
 const bust = (u) => (u ? `${u}${u.includes('?') ? '&' : '?'}v=${MEDIA_V}` : u);
 
 // Phones (<= 900 px) and data-saver visitors get the lighter <name>-m.mp4 copy (scripts/build-mobile-videos.mjs);
 // desktops keep the full-resolution file.
-const smallScreen = () =>
-  typeof window !== 'undefined' && (window.matchMedia('(max-width: 900px)').matches || !!navigator.connection?.saveData);
+const smallScreen = () => {
+  if (typeof window === 'undefined') return false;
+  const c = navigator.connection;
+  // small screen, Data Saver, or a measured link slower than ~7 Mbps / reported 3G-or-worse → light copy
+  return window.matchMedia('(max-width: 900px)').matches || !!(c && (c.saveData || (c.downlink && c.downlink < 7) || /^(slow-)?2g$|^3g$/.test(c.effectiveType || '')));
+};
 
 // Muted looping video that plays only while on screen.
 // Shown at its own aspect ratio (pass `ratio`, e.g. "16 / 9") so it is never stretched.

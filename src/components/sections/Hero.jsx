@@ -65,7 +65,7 @@ export default function Hero({ introActive = false }) {
     <section className="hero3 theme-dark" ref={ref}>
       <motion.div className="hero3-bg" style={{ scale, borderRadius: radius }}>
         <Video
-          src={wide ? '/media/hero-earth-4k.mp4' : '/media/hero-earth.mp4'}
+          src={wide ? '/media/hero-earth-hd.mp4' : '/media/hero-earth.mp4'}
           poster="/media/hero-earth-poster.jpg"
           fill
           label="Earth from space at night — Nuvō works with businesses around the world"

@@ -101,7 +101,7 @@ export default function ProcessPage() {
 
       <section className="section on-navy night-section">
         <div className="night-bg" aria-hidden="true">
-          <Video src="/media/process-night.mp4" poster="/media/process-night-poster.jpg" fill label="Stars turning over a quiet hillside at night" />
+          <Video src="/media/process-night-hd.mp4" poster="/media/process-night-poster.jpg" fill label="Stars turning over a quiet hillside at night" />
           <span className="night-scrim" />
         </div>
         <div className="container build-wrap rel">
