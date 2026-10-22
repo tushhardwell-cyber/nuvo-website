@@ -33,7 +33,12 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
           pre.disconnect();
           // let the page's own scripts/styles/fonts finish first, then fetch the video
           if (document.readyState === 'complete') setLoad(true);
-          else window.addEventListener('load', () => setTimeout(() => setLoad(true), 150), { once: true });
+          else {
+            // start after the page finished loading — but never wait longer than 2.5 s for it
+            const go = () => setLoad(true);
+            window.addEventListener('load', () => setTimeout(go, 150), { once: true });
+            setTimeout(go, 2500);
+          }
         }
       },
       { rootMargin: '500px 0px' }
