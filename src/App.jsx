@@ -9,12 +9,14 @@ import Footer from './components/layout/Footer';
 import ScrollProgress from './components/layout/ScrollProgress';
 import PageShell from './components/layout/PageShell';
 import { initAnalytics, pageView } from './lib/analytics';
+import { withRetry } from './lib/chunkReload';
 import CinematicIntro from './components/intro/CinematicIntro';
 import AskBot from './components/layout/AskBot';
 
 const lazyPage = (factory) => {
-  const C = lazy(factory);
-  C.preload = factory;
+  const load = withRetry(factory);
+  const C = lazy(load);
+  C.preload = load;
   return C;
 };
 
@@ -72,7 +74,8 @@ export default function App() {
 
   // Warm up the other route chunks once the first page has settled
   useEffect(() => {
-    const id = setTimeout(() => ALL.forEach((p) => p.preload()), 3500);
+    // fetch the other pages' (small) code right after the first page settles, so switching pages is instant
+    const id = setTimeout(() => ALL.forEach((p) => p.preload()), 1200);
     return () => clearTimeout(id);
   }, []);
 
