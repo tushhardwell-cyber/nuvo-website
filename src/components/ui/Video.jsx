@@ -10,7 +10,7 @@ const lowData = () => {
 
 // Bump this when a media file is replaced: it changes every video/poster URL so browsers and CDNs
 // never reuse an older (or missing) copy.
-const MEDIA_V = '5';
+const MEDIA_V = '6';
 const bust = (u) => (u ? `${u}${u.includes('?') ? '&' : '?'}v=${MEDIA_V}` : u);
 
 // Phones (<= 900 px) and data-saver visitors get the lighter <name>-m.mp4 copy (scripts/build-mobile-videos.mjs);
