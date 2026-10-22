@@ -20,11 +20,23 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
   const ref = useRef(null);
   const reduce = useReducedMotion() || lowData();
   const [ready, setReady] = useState(false);
+  const [load, setLoad] = useState(false); // download the file only when it is about to be seen
   const visible = useRef(false); // on screen right now — lets a late-loading file start as soon as it can
 
   useEffect(() => {
     const v = ref.current;
     if (!v || reduce) return undefined;
+    // start downloading ~500px before the video scrolls into view (above-the-fold videos start at once)
+    const pre = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setLoad(true);
+          pre.disconnect();
+        }
+      },
+      { rootMargin: '500px 0px' }
+    );
+    pre.observe(v);
     const io = new IntersectionObserver(
       ([e]) => {
         visible.current = e.isIntersecting;
@@ -34,7 +46,10 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
       { threshold: 0.15 }
     );
     io.observe(v);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      pre.disconnect();
+    };
   }, [reduce]);
 
   const style = ratio && !fill ? { aspectRatio: ratio } : undefined;
@@ -45,12 +60,12 @@ export default function Video({ src, poster, ratio, className = '', label, fill 
       ) : (
         <video
           ref={ref}
-          src={bust(src)}
+          src={load ? bust(src) : undefined}
           poster={bust(poster)}
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={load ? 'auto' : 'none'}
           aria-label={label}
           onLoadedData={() => setReady(true)}
           onCanPlay={() => visible.current && ref.current?.play().catch(() => {})}
