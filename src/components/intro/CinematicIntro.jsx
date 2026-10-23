@@ -65,7 +65,6 @@ export default function CinematicIntro({ onDone }) {
         0
       );
 
-      tl.fromTo(q('.intro-frame'), { autoAlpha: 0, scale: 1.04 }, { autoAlpha: 1, scale: 1, duration: 0.6 }, 0);
 
       // (The opening "Invoices… Enough." montage was removed — the intro starts at the wordmark.)
 
@@ -99,7 +98,6 @@ export default function CinematicIntro({ onDone }) {
       // ── Exit: content recedes, frame splits open
       const exit = lock + 1.9;
       tl.to(q('.intro-stage'), { scale: 0.94, autoAlpha: 0, duration: 0.6, ease: 'power2.in' }, exit);
-      tl.to(q('.intro-frame, .intro-hud, .intro-skip'), { autoAlpha: 0, duration: 0.4 }, exit);
       tl.to(q('.intro-half.top'), { yPercent: -100, duration: 1.0, ease: 'expo.inOut' }, exit + 0.45);
       tl.to(q('.intro-half.bottom'), { yPercent: 100, duration: 1.0, ease: 'expo.inOut' }, exit + 0.45);
       tl.to(q('.intro-seam'), { scaleX: 1, duration: 0.45, ease: 'power3.inOut' }, exit + 0.1);
@@ -129,20 +127,6 @@ export default function CinematicIntro({ onDone }) {
       <div className="intro-half top" />
       <div className="intro-half bottom" />
       <div className="intro-seam" />
-
-      <div className="intro-frame" aria-hidden="true">
-        <span className="c tl" />
-        <span className="c tr" />
-        <span className="c bl" />
-        <span className="c br" />
-      </div>
-      <div className="intro-hud" aria-hidden="true">
-        <span className="intro-rec">
-          <i /> REC
-        </span>
-        <span className="intro-timecode-val">00:00:00:00</span>
-        <span className="intro-reel">NUVŌ · REEL 01</span>
-      </div>
 
       <div className="intro-stage">
         <div className="intro-montage" aria-hidden="true">
@@ -201,9 +185,6 @@ export default function CinematicIntro({ onDone }) {
       </div>
 
       <div className="intro-flash" aria-hidden="true" />
-      <button className="intro-skip" onClick={skip}>
-        Skip intro <span aria-hidden="true">→</span>
-      </button>
     </div>
   );
 }
